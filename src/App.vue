@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Advice from "./components/Advice/Advice.vue";
+</script>
 
-<template></template>
+<template>
+  <Advice />
+</template>
 
 <style scoped></style>
