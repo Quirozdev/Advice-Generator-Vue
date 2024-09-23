@@ -11,7 +11,7 @@ export default function useRequest<T>(url: MaybeRefOrGetter<string>) {
   const controller = new AbortController();
 
   const data: Ref<T | null> = ref(null);
-  const error = ref(null);
+  const error = ref<Error | null>(null);
   const loading = ref<boolean>(false);
 
   const refetch = () => {
@@ -20,9 +20,16 @@ export default function useRequest<T>(url: MaybeRefOrGetter<string>) {
     loading.value = true;
     request<T>(toValue(url), {
       signal: controller.signal,
+      cache: "no-cache",
     })
       .then((responseData) => (data.value = responseData))
-      .catch((err) => (error.value = err))
+      .catch((err) => {
+        if (err instanceof Error) {
+          error.value = err;
+        } else {
+          error.value = new Error("Something went wrong :(");
+        }
+      })
       .finally(() => (loading.value = false));
   };
 

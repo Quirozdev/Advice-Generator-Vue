@@ -2,7 +2,7 @@
   font-family: "Manrope";
   font-weight: 800;
   font-style: normal;
-  src: url(./fonts/Manrope-ExtraBold.ttf) format("truetype");
+  src: url(../fonts/Manrope-ExtraBold.ttf) format("truetype");
 }
 
 /* color palette from <https://github.com/vuejs/theme> */
